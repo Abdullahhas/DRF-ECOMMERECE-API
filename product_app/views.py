@@ -10,6 +10,6 @@ from rest_framework.response import Response
 class CategoryView(viewsets.ViewSet):
 
     def list(self , request):
-        queryset = Category.objects.all()
-        serializer = CategorySerializer(queryset , many = True)
+        category = Category.objects.all()
+        serializer = CategorySerializer(category , many = True)
         return Response(serializer.data)
