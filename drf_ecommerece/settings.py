@@ -130,6 +130,8 @@ SPECTACULAR_SETTINGS = {
     'TITLE' : 'Djanoge DRF Ecom'
 }
 
+from datetime import timedelta
+
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS' : [
         'rest_framework.filters.SearchFilter',
@@ -137,12 +139,24 @@ REST_FRAMEWORK = {
     ],
 
     'DEFAULT_AUTHENTICATION_CLASSES' : [
-        'rest_framework.authentication.BasicAuthentication'
+        # 'rest_framework.authentication.BasicAuthentication'
         # 'rest_framework.authentication.TokenAuthentication'
         # 'rest_framework.authentication.SessionAuthentication'
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
     ],
 
     'DEFAULT_PERMISSION_CLASSES' : [
         'rest_framework.permissions.IsAuthenticated'
-    ]
+    ],
+
+
+    
+
+
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFTIME" : timedelta(minutes=2),
+    "REFRESH_TOKEN_LIFTIME" : timedelta(days=2),
+    "ROTATE_TOKEN_LIFTIME" : False,
 }
