@@ -6,31 +6,32 @@ from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema
 
 
+
 # Create your views here.
 
-class CategoryView(viewsets.ViewSet):
-
-    @extend_schema(responses = CategorySerializer)
-    def list(self , request):
-        category = Category.objects.all()
-        serializer = CategorySerializer(category , many = True)
-        return Response(serializer.data)
+@extend_schema(responses = CategorySerializer)
+class CategoryView(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    search_fields = ['name']
+    ordering_fields = ['name']
+    
+    
     
 
+@extend_schema(responses = BrandSerializer)
+class BrandViewSet(viewsets.ModelViewSet):
 
-class BrandViewSet(viewsets.ViewSet):
-
-    @extend_schema(responses = BrandSerializer)
-    def list(self , request):
-        category = Brand.objects.all()
-        serializer = BrandSerializer(category , many = True)
-        return Response(serializer.data)
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
+    search_fields = ['name']
+    ordering_fields = ['name']
     
 
-class ProductViewSet(viewsets.ViewSet):
+@extend_schema(responses=ProductSerializer)
+class ProductViewSet(viewsets.ModelViewSet):
 
-    @extend_schema(responses=ProductSerializer)
-    def list(self , request):
-        product = Product.objects.all()
-        serializer = ProductSerializer(product , many = True)
-        return Response(serializer.data)
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    search_fields = ['name']
+    ordering_fields = "__all__"

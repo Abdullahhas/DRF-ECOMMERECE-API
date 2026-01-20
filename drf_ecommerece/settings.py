@@ -128,3 +128,10 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     'TITLE' : 'Djanoge DRF Ecom'
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS' : [
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ]
+}
