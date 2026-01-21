@@ -19,7 +19,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/schema/' , SpectacularAPIView.as_view() , name = 'schema'),
     path('api/schema/docs/' , SpectacularSwaggerView.as_view(url_name = 'schema')),
-    # path('auth/',include('rest_framework.urls', namespace='rest_framework')) 
+    path('auth/',include('rest_framework.urls', namespace='rest_framework')) ,
     # path('gettoken/',obtain_auth_token)
     path('gettoken/',TokenObtainPairView.as_view() , name = 'token_obtain_pair'),
     path('refreshtoken/',TokenRefreshView.as_view() , name = 'token_refresh'),
