@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from drf_spectacular.utils import extend_schema
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAdminUser
-
+from .pagination import MyPagination
 
 
 # Create your views here.
@@ -19,6 +19,7 @@ class CategoryView(viewsets.ModelViewSet):
     ordering_fields = ['name']
     # authentication_classes = [BasicAuthentication]
     # permission_classes = [IsAdminUser]
+    pagination_class = MyPagination
     
     
     
