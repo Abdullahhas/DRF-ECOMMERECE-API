@@ -13,6 +13,9 @@ router = DefaultRouter()
 router.register(r'category' , views.CategoryView , basename='category')
 router.register(r'brand' , views.BrandViewSet , basename='brand')
 router.register(r'product' , views.ProductViewSet , basename='product')
+# router.register(r'user' , views.UserViewSet , basename='user')
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,7 +26,10 @@ urlpatterns = [
     # path('gettoken/',obtain_auth_token)
     path('gettoken/',TokenObtainPairView.as_view() , name = 'token_obtain_pair'),
     path('refreshtoken/',TokenRefreshView.as_view() , name = 'token_refresh'),
-    path('verifytoken/',TokenVerifyView.as_view() , name = 'token_verify')
+    path('verifytoken/',TokenVerifyView.as_view() , name = 'token_verify'),
+    path('api/auth/signup',views.RegisterAPIView.as_view(), name='register'),
+    path('api/auth/check/', views.CheckAuthAPIView.as_view(), name='check_auth'),
+    
     
     
 ]
